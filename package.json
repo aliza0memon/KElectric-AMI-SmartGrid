@@ -1,0 +1,31 @@
+{
+  "name": "kelectric-ami-smartgrid",
+  "version": "1.0.0",
+  "description": "> Academic prototype for Advanced Database Management System (ADBMS) course project.\r > Simulates a smart electricity grid environment inspired by K-Electric's Advanced Metering Infrastructure (AMI).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliza0memon/KElectric-AMI-SmartGrid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aliza0memon/KElectric-AMI-SmartGrid/issues"
+  },
+  "homepage": "https://github.com/aliza0memon/KElectric-AMI-SmartGrid#readme",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "mongoose": "^9.12.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0"
+  }
+}
