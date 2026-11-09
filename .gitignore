@@ -4,3 +4,5 @@ node_modules/
 *.log
 npm-debug.log*
 docs/screenshots/*.tmp
+.vercel
+.env*
