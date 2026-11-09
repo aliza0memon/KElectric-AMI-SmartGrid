@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Electric AMI | Smart Grid Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">K-Electric AMI</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-item" data-page="consumers">Consumers</a>
+        <a href="#" class="nav-item" data-page="meters">Smart Meters</a>
+        <a href="#" class="nav-item" data-page="readings">Meter Readings</a>
+        <a href="#" class="nav-item" data-page="billing">Billing</a>
+        <a href="#" class="nav-item" data-page="outages">Outages</a>
+        <a href="#" class="nav-item" data-page="analytics">Analytics</a>
+        <a href="#" class="nav-item" data-page="settings">Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <h1 id="page-title">Dashboard</h1>
+      </header>
+
+      <section id="page-dashboard" class="page active">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Consumers</div>
+            <div class="kpi-value" id="kpi-consumers">--</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Active Meters</div>
+            <div class="kpi-value" id="kpi-meters">--</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Total Consumption (kWh)</div>
+            <div class="kpi-value" id="kpi-consumption">--</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Total Revenue (Rs)</div>
+            <div class="kpi-value" id="kpi-revenue">--</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Pending Bills</div>
+            <div class="kpi-value" id="kpi-pending">--</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Active Outages</div>
+            <div class="kpi-value" id="kpi-outages">--</div>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Daily Consumption</h3>
+            <canvas id="chart-daily-consumption"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Top 10 Consumers</h3>
+            <canvas id="chart-top-consumers"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-consumers" class="page">
+        <div class="table-toolbar">
+          <input type="text" id="consumer-search" placeholder="Search consumers by name...">
+          <button id="btn-add-consumer">+ Add Consumer</button>
+        </div>
+        <table class="data-table" id="consumers-table">
+          <thead>
+            <tr><th>Consumer ID</th><th>Name</th><th>Email</th><th>Area</th><th>Type</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="page-meters" class="page">
+        <div class="table-toolbar">
+          <input type="text" id="meter-search" placeholder="Search meters by area...">
+        </div>
+        <table class="data-table" id="meters-table">
+          <thead>
+            <tr><th>Meter ID</th><th>Consumer</th><th>Area</th><th>Type</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="page-readings" class="page">
+        <div class="table-toolbar">
+          <input type="text" id="reading-meter-input" placeholder="Enter Meter ID (e.g. MTR-0001)">
+          <button id="btn-load-readings">Load Readings</button>
+        </div>
+        <table class="data-table" id="readings-table">
+          <thead>
+            <tr><th>Timestamp</th><th>Energy (kWh)</th><th>Voltage</th><th>Current</th><th>Power Factor</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="page-billing" class="page">
+        <table class="data-table" id="bills-table">
+          <thead>
+            <tr><th>Bill ID</th><th>Consumer</th><th>Period</th><th>Units</th><th>Amount</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="page-outages" class="page">
+        <div class="table-toolbar">
+          <button id="btn-add-outage">+ Report Outage</button>
+        </div>
+        <table class="data-table" id="outages-table">
+          <thead>
+            <tr><th>Outage ID</th><th>Area</th><th>Start Time</th><th>Duration</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="page-analytics" class="page">
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Peak-Hour Consumption</h3>
+            <canvas id="chart-peak-hours"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Monthly Revenue</h3>
+            <canvas id="chart-monthly-revenue"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Outage Duration by Area</h3>
+            <canvas id="chart-outage-area"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-settings" class="page">
+        <p style="color: var(--text-secondary)">Settings page — placeholder for future configuration options (e.g. tariff rates).</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/consumers.js"></script>
+  <script src="js/meters.js"></script>
+  <script src="js/readings.js"></script>
+  <script src="js/billing.js"></script>
+  <script src="js/outages.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
