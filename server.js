@@ -28,11 +28,12 @@ app.use('/api/outages', outageRoutes);
 app.use('/api/readings', readingRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
-async function startServer() {
-  await connectDB();
+connectDB();
+
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 
-startServer();
+module.exports = app;

@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadConsumers(e.target.value);
   });
 });
+
 document.addEventListener('DOMContentLoaded', () => {
   const addBtn = document.getElementById('btn-add-consumer');
   addBtn.addEventListener('click', async () => {
