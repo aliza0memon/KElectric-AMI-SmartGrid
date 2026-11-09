@@ -41,3 +41,32 @@ document.addEventListener('DOMContentLoaded', () => {
     loadConsumers(e.target.value);
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const addBtn = document.getElementById('btn-add-consumer');
+  addBtn.addEventListener('click', async () => {
+    const name = prompt('Consumer name:');
+    if (!name) return;
+    const email = prompt('Email:');
+    const phone = prompt('Phone:');
+    const area = prompt('Area (e.g. Clifton, Gulshan, Malir):');
+    const connectionType = prompt('Connection type (residential/commercial/industrial):') || 'residential';
+
+    const consumerId = 'CON-' + Date.now().toString().slice(-6);
+
+    try {
+      await apiPost('/consumers', {
+        consumerId,
+        name,
+        email,
+        phone,
+        address: { street: 'N/A', city: 'Karachi', area },
+        connectionType,
+        accountStatus: 'active'
+      });
+      alert('Consumer added successfully!');
+      loadConsumers();
+    } catch (error) {
+      alert('Failed to add consumer: ' + error.message);
+    }
+  });
+});
